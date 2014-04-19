@@ -1,0 +1,189 @@
+// bower:scss
+ @import "../../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+
+$std-margin: 0.3rem;
+$break-small: 480px;
+$break-large: 1200px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.window {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: $gray-lighter;
+    border-bottom: 1px solid $gray-light;
+    border-top: 1px solid #ccc;
+
+    button {
+      margin: 0;
+      padding: $std-margin;
+      margin: $std-margin;
+      text-align: center;
+      border: 0;
+      background: transparent;
+    }
+
+    .show-tabs {
+      @media screen and (min-width: $break-small) {
+        display: none;
+      }
+    }
+
+    form {
+      flex: 1;
+      display: flex;
+
+      input {
+        flex: 1;
+        margin: $std-margin;
+        padding: $std-margin;
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        box-shadow: inset 1px 1px 1px #eee;
+      }
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: $gray-lighter;
+
+  .tab {
+    padding: $std-margin;
+    margin: 0 $std-margin;
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 1.2rem;
+
+    a {
+      color: $gray;
+      text-decoration: none;
+
+      &:hover {
+        color: $gray-dark;
+      }
+    }
+  }
+
+  .active-tab {
+    font-weight: bold;
+  }
+
+  .new-tab {
+    padding: $std-margin;
+    margin: 0 $std-margin;
+    color: $gray-light;
+    font-size: 1.4rem;
+    border-radius: 3px;
+  }
+
+  .close-tabs {
+    padding: $std-margin;
+    margin: 0 $std-margin;
+    color: $gray-light;
+    font-size: 1.4rem;
+    border-radius: 3px;
+
+    @media screen and (min-width: $break-small) {
+      display: none;
+    }
+  }
+
+  .close {
+    margin: 0 $std-margin;
+    font-size: 1.4rem;
+  }
+
+  @media screen and (max-width: $break-small) {
+    position: absolute;
+    min-height: 100%;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    background-color: $gray-light;
+
+    &.hide-mobile {
+      display: none;
+    }
+
+    .tab {
+      box-sizing: border-box;
+      font-size: 1.5rem;
+      padding: 1rem;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      background-color: $gray;
+      border-bottom: 1px solid $gray-dark;
+      width: 100%;
+
+      a {
+        color: $gray-light;
+        flex: 1;
+        text-align: center;
+
+        &:hover {
+          color: $gray-light;
+        }
+      }
+    }
+
+    .active-tab {
+      background-color: $gray;
+      a {
+        color: $gray-lighter;
+        &:hover {
+          color: $gray-lighter;
+        }
+      }
+    }
+
+    .close {
+      font-size: 2rem;
+    }
+
+    .new-tab, .close-tabs {
+      color: $gray-lighter;
+      position: absolute;
+      bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .new-tab {
+      left: 1rem;
+    }
+
+    .close-tabs {
+      right: 1rem;
+    }
+  }
+
+}
