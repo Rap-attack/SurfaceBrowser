@@ -1,3 +1,4 @@
+/*global Modernizr:true */
 'use strict';
 
 var tabId = 1;
@@ -71,32 +72,11 @@ $(document).ready(function(){
         var tabFuture = [];
         var thisTabId = tabId;
 
-        $('.active')
-            .removeClass('active')
-            .hide();
-
-        var window = $('<div></div>')
-            .addClass('window')
-            .addClass('active')
-            .attr('id', 'window-id-' + thisTabId);
-
-        var iframe = $('<iframe></iframe>')
-            .attr('allowfullscreen', true);
-
-        var nav = $('<nav></nav>');
+        // Events
 
         var refreshClickEvent = function() {
             $('.active').find('form').submit();
         };
-
-        var refresh = $('<button></button>')
-            .addClass('refresh')
-            .append('<i class="fa fa-fw fa-refresh">')
-            .click(refreshClickEvent);
-
-        var menu = $('<button></button>')
-            .addClass('menu')
-            .append('<i class="fa fa-fw fa-bars">');
 
         var formSubmitEvent = function() {
             event.preventDefault();
@@ -114,11 +94,6 @@ $(document).ready(function(){
             $('.tab[data-tab-id="' + thisTabId + '"]').children('a').text(newUrl);
         };
 
-        var form = $('<form></form>')
-            .addClass('search')
-            .append('<input class="searchbar" value="http://">')
-            .submit(formSubmitEvent);
-
         var previousClickEvent = function () {
             var currentSite = iframe.attr('src');
             tabFuture.push(currentSite);
@@ -128,11 +103,6 @@ $(document).ready(function(){
             form.children('input').val(previousSite);
             iframe.attr('src', previousSite);
         };
-
-        var previous = $('<button></button>')
-            .addClass('previous')
-            .append('<i class="fa fa-fw fa-chevron-left">')
-            .click(previousClickEvent);
 
         var nextClickEvent = function() {
             var currentSite = iframe.attr('src');
@@ -144,15 +114,48 @@ $(document).ready(function(){
             iframe.attr('src', nextSite);
         };
 
-        var next = $('<button></button>')
-            .addClass('next')
-            .append('<i class="fa fa-fw fa-chevron-right"></i>')
-            .click(nextClickEvent);
-
         var tabsClickEvent = function() {
             $('.tabs').removeClass('hide-mobile');
             $('.active').hide();
         };
+
+        $('.active')
+            .removeClass('active')
+            .hide();
+
+        var window = $('<div></div>')
+            .addClass('window')
+            .addClass('active')
+            .attr('id', 'window-id-' + thisTabId);
+
+        var iframe = $('<iframe></iframe>')
+            .attr('allowfullscreen', true);
+
+        var nav = $('<nav></nav>');
+
+        var refresh = $('<button></button>')
+            .addClass('refresh')
+            .append('<i class="fa fa-fw fa-refresh">')
+            .click(refreshClickEvent);
+
+        var menu = $('<button></button>')
+            .addClass('menu')
+            .append('<i class="fa fa-fw fa-bars">');
+
+        var form = $('<form></form>')
+            .addClass('search')
+            .append('<input class="searchbar" value="http://">')
+            .submit(formSubmitEvent);
+
+        var previous = $('<button></button>')
+            .addClass('previous')
+            .append('<i class="fa fa-fw fa-chevron-left">')
+            .click(previousClickEvent);
+
+        var next = $('<button></button>')
+            .addClass('next')
+            .append('<i class="fa fa-fw fa-chevron-right"></i>')
+            .click(nextClickEvent);
 
         var tabs = $('<button></button>')
             .addClass('show-tabs')
@@ -176,19 +179,10 @@ $(document).ready(function(){
         newTab();
     });
 
-    $('.menu').click(function(){
-
-    });
-
     $('.close-tabs').click(function(){
         //$('.tabs').hide();
         $('.tabs').addClass('hide-mobile');
         $('.active').show();
     });
 
-    /*
-     *          START
-     */
-
-    $('.new-tab').click();
 });

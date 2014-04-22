@@ -2,23 +2,42 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>browserDesign</title>
+        <title>SurfaceBrowser</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <!-- <link rel="stylesheet" href="styles/main.css"> -->
         <!-- endbuild -->
 
-        <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="../bower_components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
+        <!-- Custom Modernizr with ability to test touch, media queries & yepnope.js loader -->
+        <script src="scripts/modernizr.custom.48694.js"></script>
+
+        <script>
+            Modernizr.load({
+                test : Modernizr.touch && Modernizr.mq('only all and (min-width: 1824px'),
+                //test : true, // for testing!
+                yep  : ['scripts/tabletop.js', 'styles/tabletop.css'],
+                nope : ['scripts/desktop.js', 'styles/desktop.css'],
+                both : 'scripts/helpers.js',
+                callback : function (url, result, key) {
+                    console.log(url, result, key);
+                },
+                complete : function () {
+                    // Start!
+                    console.log('Done loading.');
+                    console.log('hej på dig!');
+                    $('.new-tab').click();
+                }
+            });
+        </script>
     </head>
     <body>
         <div class="tabs hide-mobile">
@@ -50,10 +69,5 @@
         <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
         <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
         <!-- endbuild -->
-
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/helpers.js"></script>
-        <script src="scripts/desktop.js"></script>
-        <!-- endbuild -->
-</body>
+    </body>
 </html>
