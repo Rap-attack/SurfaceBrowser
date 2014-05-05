@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: relative;
+            overflow: hidden;
+            float: left;
+        }
+
+        iframe {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            width: 1280px;
+            height: 1200px;
+        }
+
+        #div-1 {
+            width: 592px;
+            height: 433px;
+        }
+
+        #iframe-1 {
+            top: -165px;
+            left: -643px;
+        }
+
+        #div-2 {
+            width: 474px;
+            height: 75px;
+        }
+
+        #iframe-2 {
+            top: -15px;
+            left: -143px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div-1">
+        <iframe src="source.html" id="iframe-1"></iframe>
+    </div>
+    <div id="div-2">
+        <iframe src="source.html" id="iframe-2"></iframe>
+    </div>
+</body>
+</html>

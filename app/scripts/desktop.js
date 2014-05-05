@@ -75,7 +75,12 @@ $(document).ready(function(){
         // Events
 
         var refreshClickEvent = function() {
-            $('.active').find('form').submit();
+            try {
+                form.submit();
+            }
+            catch(err) {
+                alert(err);
+            }
         };
 
         var formSubmitEvent = function() {
@@ -95,20 +100,28 @@ $(document).ready(function(){
         };
 
         var previousClickEvent = function () {
-            var currentSite = iframe.attr('src');
-            tabFuture.push(currentSite);
-
             var previousSite = tabHistory.pop();
+            var currentSite = iframe.attr('src');
+
+            if( currentSite ) tabFuture.push(currentSite);
+
+            if( ! previousSite ) {
+                form.children('input').val('http://');
+                iframe.attr('src', '');
+                return false;
+            }
 
             form.children('input').val(previousSite);
             iframe.attr('src', previousSite);
         };
 
         var nextClickEvent = function() {
+            var nextSite = tabFuture.pop();
+
+            if( ! nextSite ) return false;
+
             var currentSite = iframe.attr('src');
             tabHistory.push(currentSite);
-
-            var nextSite = tabFuture.pop();
 
             form.children('input').val(nextSite);
             iframe.attr('src', nextSite);
@@ -129,7 +142,9 @@ $(document).ready(function(){
             .attr('id', 'window-id-' + thisTabId);
 
         var iframe = $('<iframe></iframe>')
-            .attr('allowfullscreen', true);
+            .attr('allowfullscreen', true)
+            .attr('allowtransperancy', true)
+            .attr('name', 'iframe-' + tabId);
 
         var nav = $('<nav></nav>');
 
@@ -138,9 +153,34 @@ $(document).ready(function(){
             .append('<i class="fa fa-fw fa-refresh">')
             .click(refreshClickEvent);
 
-        var menu = $('<button></button>')
+        // MENU
+
+        var menuBookmarkThisClickEvent = function() {
+            alert('Bookmarked!');
+        };
+        var menuBookmarkThis = $('<li><a href="#" class="menu-item">Bookmark this page</a>  </li>')
+            .click(menuBookmarkThisClickEvent);
+
+        var menuBookmarks = $('<li><a href="bookmarks.html" class="menu-item" target="iframe-' + tabId + '">Bookmarks</a></li>');
+        var menuHistory = $('<li><a href="history.html" class="menu-item" target="iframe-' + tabId + '">History</a></li>');
+        var menuTest = $('<li><a href="test-site.html" class="menu-item" target="iframe-' + tabId + '">Test!</a></li>');
+
+        var menu = $('<ul></ul>')
             .addClass('menu')
-            .append('<i class="fa fa-fw fa-bars">');
+            .append(menuBookmarkThis)
+            .append(menuBookmarks)
+            .append(menuHistory)
+            .append(menuTest);
+
+        var menuButtonClickEvent = function(e) {
+            e.stopPropagation();
+            $('.menu').toggle();
+        };
+
+        var menuButton = $('<button></button>')
+            .addClass('menu-button')
+            .append('<i class="fa fa-fw fa-bars">')
+            .click(menuButtonClickEvent);
 
         var form = $('<form></form>')
             .addClass('search')
@@ -168,6 +208,7 @@ $(document).ready(function(){
             .append(refresh)
             .append(form)
             .append(tabs)
+            .append(menuButton)
             .append(menu);
 
         window
@@ -180,9 +221,12 @@ $(document).ready(function(){
     });
 
     $('.close-tabs').click(function(){
-        //$('.tabs').hide();
         $('.tabs').addClass('hide-mobile');
         $('.active').show();
+    });
+
+    $(document).click(function(){
+        $('.menu').hide();
     });
 
 });

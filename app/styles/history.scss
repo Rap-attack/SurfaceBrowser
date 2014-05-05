@@ -1,0 +1,32 @@
+$white: #fff;
+$gray-lighter: #eee;
+$gray-light: #ccc;
+$gray: #bbb;
+$gray-dark: #777;
+$gray-darker: #333;
+
+body {
+  font-family: 'Open Sans';
+}
+
+h1 {
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    a {
+      text-decoration: none;
+      color: $gray-darker;
+
+      &:hover {
+        color: $gray-dark;
+        text-decoration: underline;
+      }
+    }
+  }
+}

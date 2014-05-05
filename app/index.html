@@ -3,29 +3,23 @@
     <head>
         <meta charset="utf-8">
         <title>SurfaceBrowser</title>
-        <meta name="description" content="">
+        <meta name="description" content="SurfaceBrowser">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> <!-- Font Awesome -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">  <!-- Open Sans Font -->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css styles/vendor.css -->
-        <!-- bower:css -->
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css(.tmp) styles/main.css -->
-        <!-- <link rel="stylesheet" href="styles/main.css"> -->
-        <!-- endbuild -->
 
-        <!-- Custom Modernizr with ability to test touch, media queries & yepnope.js loader -->
+        <!-- Modernizr, tests touch events, media queries & includes yepnope.js file loader -->
         <script src="scripts/modernizr.custom.48694.js"></script>
 
+        <!-- Load .js and .css -->
         <script>
             Modernizr.load({
-                test : Modernizr.touch && Modernizr.mq('only all and (min-width: 1824px'),
-                //test : true, // for testing!
-                yep  : ['scripts/tabletop.js', 'styles/tabletop.css'],
-                nope : ['scripts/desktop.js', 'styles/desktop.css'],
+                //test : Modernizr.touch && Modernizr.mq('only all and (min-width: 1824px'),
+                test : true, // for testing!
+                yep  : ['styles/tabletop.css', 'scripts/tabletop.js'],
+                nope : ['styles/desktop.css', 'scripts/desktop.js'],
                 both : 'scripts/helpers.js',
                 callback : function (url, result, key) {
                     console.log(url, result, key);
@@ -33,7 +27,6 @@
                 complete : function () {
                     // Start!
                     console.log('Done loading.');
-                    console.log('hej på dig!');
                     $('.new-tab').click();
                 }
             });
@@ -56,18 +49,6 @@
         <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="../bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
         <!-- endbuild -->
     </body>
 </html>

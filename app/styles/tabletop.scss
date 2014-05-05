@@ -1,0 +1,281 @@
+$std-margin: 0.5rem;
+$break-small: 480px;
+$break-large: 1200px;
+
+// COLORS
+$white: #fff;
+$gray-lighter: #eee;
+$gray-light: #ccc;
+$gray: #bbb;
+$gray-dark: #777;
+$gray-darker: #333;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Open Sans';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.window {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  .top-controls {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, $gray-light 0%, $gray-lighter 100%);
+    border-top: 1px solid $gray-dark;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    .top-button {
+      font-size: 1.5rem;
+      padding: 1.5rem;
+      margin: 0;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .minimize {
+      color: yellow;
+      border-right: 1px solid $gray;
+    }
+
+    .maximize {
+      color: green;
+      float: right;
+      border-left: 1px solid $gray;
+    }
+
+    .close-window {
+      color: red;
+      float: right;
+      border-left: 1px solid $gray;
+    }
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    background: linear-gradient(to bottom, #f7f7f7 0%,#e5e5e5 100%);
+    border-bottom: 1px solid $gray-light;
+    border-top: 1px solid $gray;
+    position: relative;
+
+    button {
+      padding: $std-margin;
+      margin: $std-margin;
+      text-align: center;
+      border: 0;
+      background: transparent;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .show-tabs {
+      @media screen and (min-width: $break-small) {
+        display: none;
+      }
+    }
+
+    form {
+      flex: 1;
+      display: flex;
+
+      input {
+        flex: 1;
+        margin: $std-margin;
+        padding: $std-margin;
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        box-shadow: inset 1px 1px 1px #eee;
+      }
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 3rem;
+      right: 1rem;
+      z-index: 9999;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      float: right;
+      border: 1px solid $gray;
+      background-color: $gray-lighter;
+      border-radius: 3px;
+
+      > li {
+        border-bottom: 1px solid $gray;
+
+        &:hover {
+          background-color: $gray-light;
+        }
+      }
+
+      :last-child {
+        border: none;
+      }
+    }
+
+    .menu-item {
+      font-size: 1.2rem;
+      padding: 1rem;
+      margin: 0;
+      display: block;
+      min-width: 200px;
+      text-decoration: none;
+      color: $gray-darker;
+      text-align: left;
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  background: linear-gradient(to bottom, $gray-light 0%, $gray 100%);
+
+  .tab {
+    padding: $std-margin;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    border-right: 1px solid $gray-dark;
+    border-top-right-radius: 3px;
+    background-color: $gray-light;
+
+    a {
+      margin-left: $std-margin;
+      color: $gray-darker;
+      text-decoration: none;
+    }
+  }
+
+  .active-tab {
+    box-shadow: inset 0px -2px 0px $gray-lighter;
+    a {
+      color: #000;
+    }
+  }
+
+  .new-tab {
+    padding: $std-margin;
+    margin: 0 $std-margin;
+    color: $gray-dark;
+    text-shadow: 0px 1px 0px $gray-light;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .close-tabs {
+    padding: $std-margin;
+    margin: 0 $std-margin;
+    color: $gray-light;
+    font-size: 1.4rem;
+    border-radius: 3px;
+
+    @media screen and (min-width: $break-small) {
+      display: none;
+    }
+  }
+
+  .close {
+    margin: 0 $std-margin;
+    font-size: 1.2rem;
+    color: $gray-darker;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $break-small) {
+    position: absolute;
+    min-height: 100%;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    background-color: $gray-light;
+
+    &.hide-mobile {
+      display: none;
+    }
+
+    .tab {
+      box-sizing: border-box;
+      font-size: 1.5rem;
+      padding: 1rem;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      background-color: $gray;
+      border-bottom: 1px solid $gray-dark;
+      width: 100%;
+
+      a {
+        color: $gray-light;
+        flex: 1;
+        text-align: center;
+
+        &:hover {
+          color: $gray-light;
+        }
+      }
+    }
+
+    .active-tab {
+      background-color: $gray;
+      box-shadow: none;
+      a {
+        color: $gray-lighter;
+        &:hover {
+          color: $gray-lighter;
+        }
+      }
+    }
+
+    .close {
+      font-size: 2rem;
+    }
+
+    .new-tab, .close-tabs {
+      color: $gray-lighter;
+      position: absolute;
+      bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .new-tab {
+      left: 1rem;
+    }
+
+    .close-tabs {
+      right: 1rem;
+    }
+  }
+
+}
